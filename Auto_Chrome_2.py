@@ -11,10 +11,10 @@ from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.support import expected_conditions as ExpectedConditions
 from selenium.webdriver.common.keys import Keys
-import platform
+from selenium.webdriver.chrome.service import Service
+import platform 
 
 main_directory = os.path.join(sys.path[0])
-#start with new empty file
 file = None
 
 root = Tk()
@@ -43,11 +43,6 @@ def open_chrome_profile():
             shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
 
     
-
-
-
-
-
 #####MENU BAR#####
 def newFile():
     global file
@@ -120,15 +115,13 @@ root.config(menu=MenuBar)
 
 # _____MAIN_CODE_____
 def main_program_loop(): 
-
-    ##chromeoptions
-    opt = Options()
-    opt.add_experimental_option("debuggerAddress", "localhost:8989")
-    driver = webdriver.Chrome(
-        executable_path=main_directory + "/chromedriver.exe",
-        options=opt,
-        )    
+    ###new chrome options
+    ser = Service(main_directory + "/chromedriver.exe")
+    op = webdriver.ChromeOptions()
+    op.add_experimental_option("debuggerAddress", "localhost:8989")
+    driver = webdriver.Chrome(service=ser, options=op)
     wait = WebDriverWait(driver, 60)
+
     #establish main page
     main_page = driver.current_window_handle
 
@@ -168,15 +161,6 @@ open_browser.pack(anchor=N, pady=5, padx=5)
 
 start_button = Button(text = "Start", command = main_program_loop, bg = "green", font=(my_font, 10))
 start_button.pack(anchor=N, pady=5, padx=5)
-
-#number of loop entry
-e = Entry(root)
-e.insert(1, 1)
-e.label = Label(text= "Loop amount:")
-e.label.pack(anchor=W, pady=0, padx=1)
-e.config(font=(my_font, 8))
-e.label.config(font=(my_font, 8))
-e.pack(anchor=W, pady=1, padx=1)
 
 #Add TextArea
 TextArea = Text(root, font=("Arial", 10), bg = "light gray")
