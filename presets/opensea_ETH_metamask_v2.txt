@@ -1,0 +1,53 @@
+####README#####
+###IMPORTANT####  Only works with MetaMask and ethereum collections on opensea (Windows only) ###IMPORTANT###
+#make sure you have paid for atleast one piece in your collection before you start
+#Make sure to set your variables below for this script 
+
+
+#####VARIABLE START####### (FILL BEFORE STARTING) ####
+file_path = "K:\\2021 Backups\\Blender\\projects\\Crypto-Verse\\Gen Season\\5001_6000"     #keep the ##\\##
+collection_link = "https://opensea.io/collection/cryptoverse-lone-wanderer"
+start_num = 5635
+up_amount = 2     ####this is how many times its goign to loop aka hwo may pictures it will uplaod
+loop_price = 0.075
+loop_title = "#"
+loop_file_format = "png"
+loop_external_link = "https://linktr.ee/Cloudmaking"
+loop_description = "Lone wanderer is a series of 10000 collectible planets. The Rarity of the planets increases as we reach out max storage limit of 10000."
+#####VARIABLES END########
+
+while up_amount != 0:
+	go_to(collection_link)
+	xpath_and_click('//*[@id="__next"]/div[1]/main/div/div/div[1]/span/a')
+	time.sleep(1)
+	imagePath = os.path.abspath(file_path + "\\" + str(start_num) + "." + loop_file_format)
+	xpath_and_key('//*[@id="media"]', imagePath)
+	#time.sleep(1)
+	xpath_and_key('//*[@id="name"]', loop_title + str(start_num))
+	#time.sleep(1)
+	xpath_and_key('//*[@id="external_link"]', loop_external_link)
+	#time.sleep(1)
+	xpath_and_key('//*[@id="description"]', loop_description)
+	#time.sleep(1)
+	xpath_and_click('//*[@id="__next"]/div[1]/main/div/div/section/div[2]/form/div/div[1]/span/button')
+	time.sleep(1)
+	css_and_click("i[aria-label='Close']")
+	time.sleep(1)
+
+	main_page = driver.current_window_handle
+
+	xpath_and_click('//*[@id="__next"]/div[1]/main/div/div/div[1]/div/span[2]/a')
+	css_and_key("input[placeholder='Amount']", str(loop_price))
+	css_and_click("button[type='submit']")
+	time.sleep(15) #change this depending on how quickly the metamask notification comes up
+
+	driver.switch_to.window(driver.window_handles[1])
+	xpath_and_click("//*[@id='app-content']/div/div[2]/div/div[3]/button[2]")
+	time.sleep(1)
+	driver.switch_to.window(main_page)
+	time.sleep(1)
+
+	start_num = start_num + 1
+	up_amount = up_amount - 1
+
+

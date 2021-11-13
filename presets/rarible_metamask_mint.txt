@@ -1,0 +1,70 @@
+####README#####
+###IMPORTANT####    Only works with MetaMask and RARI collections on the Rarible   ###IMPORTANT###
+
+#make sure to set your variables below for this script, examples provided
+
+#####VARIABLE START####### (FILL BEFORE STARTING) ####
+file_path = "K:\\2021 Backups\\Blender\\projects\\Crypto-Verse\\Gen Season\\misc_renders"     #keep the ##\\##
+start_num = 34
+up_amount = 2     ####this is how many times its goign to loop aka hwo may pictures it will uplaod
+loop_price = 0.075
+loop_title = "#"
+loop_file_format = "png"
+loop_description = "My personal collection of planets from the lone wanderer series."
+royalties = "10"
+#####VARIABLES END########
+
+while up_amount != 0:    
+    driver.switch_to.window(driver.window_handles[0])
+    go_to("https://rarible.com/create")
+    css_and_click("button[id='create-single']")
+    imagePath = os.path.abspath(file_path + "\\" + str(start_num) + "." + loop_file_format)
+    css_and_key("input[name='primary-attachment']", imagePath)
+    css_and_click("img[alt='Open for bids']") ### 'Timed auction' ### 'Fixed price' ###change 'Open for bids' as desired##
+    css_and_key("input[data-marker='root/appPage/create/form/nameInput']", loop_title+str(start_num))
+    css_and_key("textarea[class='sc-bdnxRM sc-dFRpbK sc-bsatvv bsGkxZ dvYuYU']", loop_description)
+    x = driver.find_element_by_css_selector("input[inputmode='decimal']")
+    x.send_keys(Keys.BACKSPACE)
+    x.send_keys(Keys.BACKSPACE)
+    x.send_keys(royalties)  
+
+    mian_window = driver.current_window_handle
+    css_and_click("button[data-marker='root/appPage/create/form/createButton']")
+    time.sleep(30) ###adjust this depending on your uplaod speed
+
+    for handle in driver.window_handles:
+        if handle != main_page:
+            login_page = handle
+
+    driver.switch_to.window(login_page)
+    #print(driver.title + "1")
+    time.sleep(5)
+    css_and_click("button[class='button btn-primary btn--large']")
+    #time.sleep(5)
+    #css_and_click("button[class='button btn-primary btn--large']")
+    #time.sleep(10)
+    driver.switch_to.window(main_page)
+    #print(driver.title + "2")
+
+    time.sleep(15)
+    driver.switch_to.window(driver.window_handles[1])
+    #print(driver.title + "3")
+
+    xpath_and_click("//*[@id='app-content']/div/div[2]/div/div[3]/button[2]")
+    time.sleep(1)
+
+    driver.switch_to.window(mian_window)
+    start_num = start_num + 1
+    up_amount = up_amount - 1
+
+
+
+
+    
+
+
+
+
+
+
+
