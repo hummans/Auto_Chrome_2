@@ -128,7 +128,6 @@ def main_program_loop():
         executable_path=main_directory + "/chromedriver.exe",
         options=opt,
         )    
-
     wait = WebDriverWait(driver, 60)
     #establish main page
     main_page = driver.current_window_handle
