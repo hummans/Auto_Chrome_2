@@ -143,6 +143,16 @@ def main_program_loop():
         x.send_keys(key)
         time.sleep(1)
 
+    def linktext_click(code):
+        x = wait.until(ExpectedConditions.presence_of_element_located((By.LINK_TEXT, code)))
+        x.click()
+        time.sleep(1)
+
+    def linktext_key(code, key):
+        x = wait.until(ExpectedConditions.presence_of_element_located((By.LINK_TEXT, code)))
+        x.send_keys(key)
+        time.sleep(1)
+
     def go_to(adress):
         driver.get(adress)
 
