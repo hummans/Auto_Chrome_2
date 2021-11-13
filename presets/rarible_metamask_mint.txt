@@ -22,7 +22,9 @@ while up_amount != 0:
     css_and_key("input[name='primary-attachment']", imagePath)
     css_and_click("img[alt='Open for bids']") ### 'Timed auction' ### 'Fixed price' ###change 'Open for bids' as desired##
     css_and_key("input[data-marker='root/appPage/create/form/nameInput']", loop_title+str(start_num))
-    css_and_key("textarea[class='sc-bdnxRM sc-dFRpbK sc-bsatvv bsGkxZ dvYuYU']", loop_description)
+
+    css_and_key("textarea[data-marker='root/appPage/create/form/descriptionInput']", loop_description)
+
     x = driver.find_element_by_css_selector("input[inputmode='decimal']")
     x.send_keys(Keys.BACKSPACE)
     x.send_keys(Keys.BACKSPACE)
@@ -37,18 +39,17 @@ while up_amount != 0:
             login_page = handle
 
     driver.switch_to.window(login_page)
+    
     #print(driver.title + "1")
     time.sleep(5)
-    css_and_click("button[class='button btn-primary btn--large']")
-    #time.sleep(5)
-    #css_and_click("button[class='button btn-primary btn--large']")
-    #time.sleep(10)
+    css_and_click("button[class='button btn--rounded btn-primary btn--large']")
+
     driver.switch_to.window(main_page)
-    #print(driver.title + "2")
+
 
     time.sleep(15)
     driver.switch_to.window(driver.window_handles[1])
-    #print(driver.title + "3")
+
 
     xpath_and_click("//*[@id='app-content']/div/div[2]/div/div[3]/button[2]")
     time.sleep(1)
