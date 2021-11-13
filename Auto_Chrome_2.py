@@ -93,7 +93,7 @@ def quitApp():
 def donate():
     showinfo("Donate", "https://linktr.ee/Cloudmaking")
 def readme():
-    showinfo("ReadMe", "Comand List:\ngo_to(adress)\ncss_and_key(code, key)\nxpath_and_key(code, key)\ncss_and_click(code)\nxpath_and_click(code)")
+    showinfo("ReadMe", "Comand List:\ngo_to(adress)\ncss_and_key(code, key)\nxpath_and_key(code, key)\ncss_and_click(code)\nxpath_and_click(code)\nlinktext_key(code, key)\nlinktext_click(code)")
 def about():
     showinfo("Chrome Automator", "Auto_Chrome by @Cloudmaking")
 
