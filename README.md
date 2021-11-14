@@ -9,8 +9,8 @@ or Donate below:
 https://paypal.me/CloudMaking?locale.x=en_GB
 
 ---
-### Video instructions and Demo
-https://youtu.be/SR4XLGEFKlA
+### Video instructions and Demo (updated video coming soon - subscribe to Youtube)
+-----> https://youtu.be/SR4XLGEFKlA <-----
 
 
 ### Requirements
