@@ -15,7 +15,12 @@ from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.support.relative_locator import locate_with
 import platform 
 
-main_directory = os.path.join(sys.path[0])
+opsys = platform.system()
+if opsys == "Windows":
+    main_directory = os.path.join(sys.path[0])
+else:
+    main_directory = os.getcwd()
+
 file = None
 
 root = Tk()
@@ -23,8 +28,7 @@ root.title("Chrome Automation")
 root.geometry("644x788")
 
 def open_chrome_profile():
-    os = platform.system()
-    if os == "Windows":
+    if opsys == "Windows":
         subprocess.Popen(
             [
                 "start",
@@ -35,14 +39,8 @@ def open_chrome_profile():
             shell=True,
         )
     else:
-        subprocess.Popen([
-                "open -a /Applications/Google\ Chrome.app",
-                "--args",
-                "--remote-debugging-port=8989",
-                "--user-data-dir=" + main_directory + "/chrome_profile",
-            ],
-            shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
-
+        cmd = "open -a /Applications/Google\ Chrome.app --args --remote-debugging-port=8989 --user-data-dir={cwd}/chrome_profile".format(cwd = main_directory)
+        subprocess.Popen(cmd, shell=True)
     
 #####MENU BAR#####
 def newFile():
@@ -117,7 +115,11 @@ root.config(menu=MenuBar)
 # _____MAIN_CODE_____
 def main_program_loop(): 
     ###new chrome options
-    ser = Service(main_directory + "/chromedriver.exe")
+    if opsys == "Windows":
+        ser = Service(main_directory + "/chromedriver.exe")
+    else:
+        ser = Service(main_directory + "/chromedriver")
+    
     op = webdriver.ChromeOptions()
     op.add_experimental_option("debuggerAddress", "localhost:8989")
     driver = webdriver.Chrome(service=ser, options=op)
