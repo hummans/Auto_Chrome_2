@@ -10,7 +10,7 @@ https://paypal.me/CloudMaking?locale.x=en_GB
 
 ---
 ### Video instructions and Demo (updated video coming soon - subscribe to Youtube)
------> https://youtu.be/SR4XLGEFKlA <-----
+-----> https://youtu.be/510XSoaZ0LI <-----
 
 
 ### Requirements
