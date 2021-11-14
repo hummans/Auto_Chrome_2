@@ -29,9 +29,9 @@ https://paypal.me/CloudMaking?locale.x=en_GB
 7. Press the "Open Browser" button (download and login into the metamask extension and go to your collection on  opensea)
 8. Run the script
 
-# PRESET BUILDER COMANDS (normal python code and syntax works)
-## Find CSS and XPATH codes through the inspect window on chrome
-### all base selenium code also works fine (this just maks it so you dont need to setup anything)
+### PRESET BUILDER COMANDS (normal python code and syntax works)
+#### Find CSS and XPATH codes through the inspect window on chrome
+##### all base selenium code also works fine (this just maks it so you dont need to setup anything)
 1. go_to(adress)
 2. css_and_key(code, key)
 3. xpath_and_key(code, key)
